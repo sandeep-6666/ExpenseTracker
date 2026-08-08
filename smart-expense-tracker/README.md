@@ -108,14 +108,14 @@ The app starts on **http://localhost:8080**.
 
 All endpoints except `/api/auth/**` and Swagger paths require `Authorization: Bearer <token>`.
 
-### What's implemented on the backend
+### Backend features
 - JWT auth (register/login), BCrypt password hashing, role field (USER/ADMIN)
 - User profile: view/update profile, change password
 - Expense CRUD + search + filter by category/date/month/amount range
 - Income CRUD
 - Budget: set monthly limit, get status (spent, remaining, % used, 80% warning flag)
 - Dashboard: total income/expense/balance, category-wise spending, 6-month trend
-- AI Insights: rule-based engine (month-over-month category increases, high medical spend, entertainment trend, food-spend saving tip) — built behind an `AiInsightService` interface so a Gemini/OpenAI-backed implementation can be swapped in later without touching the controller
+- AI Insights: rule-based engine (month-over-month category increases, high medical spend, entertainment trend, food-spend saving tip), built behind an `AiInsightService` interface so a different implementation can be swapped in later without touching the controller
 - Global exception handling with consistent JSON error shape
 - Swagger/OpenAPI docs with JWT bearer auth wired in
 - SLF4J logging throughout the service layer
@@ -213,9 +213,3 @@ frontend/src/
 2. `mvn spring-boot:run` from the project root — backend on `:8080`.
 3. `cd frontend && npm install && npm run dev` — frontend on Vite's dev port.
 4. Open the frontend, register a user, and use the app end-to-end (register → login → add expenses/income → set a budget → check dashboard/analytics/insights).
-
-## Not yet included
-- Deployment config (e.g. Docker, CI/CD)
-- Real AI-backed insights (currently rule-based, swappable via `AiInsightService`)
-
-Ask me to continue with either of these and I'll build it the same way.
